@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/StudentService.Server/appsettings.Development.json
+/StudentService.Server/Database/Database.sqlite
+/StudentService.Server/Database/Database.sqlite-shm
+/StudentService.Server/Database/Database.sqlite-wal
