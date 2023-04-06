@@ -4,13 +4,13 @@ using Model;
 
 namespace DataAccess.Infrastructure.Configuration
 {
-    public class StudyProgramConfiguration : IEntityTypeConfiguration<StudyProgram>
+    public class ExamConfiguration : IEntityTypeConfiguration<Exam>
     {
-        public void Configure(EntityTypeBuilder<StudyProgram> builder)
+        public void Configure(EntityTypeBuilder<Exam> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Name).IsRequired();
-
+            builder.Property(x => x.DateTime);
+            builder.Property(x => x.Mark);
         }
     }
 }

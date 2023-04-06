@@ -1,10 +1,10 @@
 ﻿using Model;
 
-namespace DataAccess.Repositories.SubjectsRepository
+namespace DataAccess.Repositories.ProfessorRepository
 {
-    public class SubjectsRepository : ISubjectsRepository
+    public class ProfessorRepository : IProfessorRepository
     {
-        public Task<bool> Add(Subject subject)
+        public Task<bool> Add(Professor professor)
         {
             throw new NotImplementedException();
         }
@@ -14,17 +14,17 @@ namespace DataAccess.Repositories.SubjectsRepository
             throw new NotImplementedException();
         }
 
-        public Task<List<Subject>> GetAll()
+        public Task<List<Professor>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Task<Subject> GetById(long id)
+        public Task<Professor> GetById(long id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<bool> Update(Subject subject)
+        public Task<bool> Update(Professor professor)
         {
             throw new NotImplementedException();
         }

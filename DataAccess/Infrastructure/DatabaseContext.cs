@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccess.Infrastructure
 {
@@ -13,8 +8,10 @@ namespace DataAccess.Infrastructure
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudyProgram> StudyPrograms { get; set; }
-        public DbSet<StudentListensSub> StudentListensSubs { get; set; }
+        public DbSet<Exam> StudentListensSubs { get; set; }
         public DbSet<StudyProgramExams> StudyProgramExams { get; set; }
+        public DbSet<Professor> Professors { get; set; }
+        public DbSet<ProfessorsSubjects> ProfessorsSubjects { get; set; }
 
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 

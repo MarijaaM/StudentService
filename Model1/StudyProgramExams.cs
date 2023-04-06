@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     public class StudyProgramExams
     {
@@ -12,6 +6,7 @@ namespace Model
         public long SubjectId { get; set; }
         public StudyProgram StudyProgram { get; set; }
         public Subject Subject { get; set; }
+        public int Year { get; set; }
         public long Id { get; set; }
 
     }
