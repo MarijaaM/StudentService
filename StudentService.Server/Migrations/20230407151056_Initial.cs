@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace StudentService.Server.Migrations
 {
-    public partial class Init : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -54,7 +54,8 @@ namespace StudentService.Server.Migrations
                 name: "Students",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "INTEGER", nullable: false),
+                    Id = table.Column<long>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     IndexNumber = table.Column<string>(type: "TEXT", nullable: false),
                     methodOfFinancing = table.Column<int>(type: "INTEGER", nullable: false),
                     YearOfStudy = table.Column<int>(type: "INTEGER", nullable: false),
@@ -67,8 +68,8 @@ namespace StudentService.Server.Migrations
                 {
                     table.PrimaryKey("PK_Students", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Students_StudyPrograms_Id",
-                        column: x => x.Id,
+                        name: "FK_Students_StudyPrograms_StudyProgramId",
+                        column: x => x.StudyProgramId,
                         principalTable: "StudyPrograms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -102,7 +103,7 @@ namespace StudentService.Server.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StudentListensSubs",
+                name: "Exams",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "INTEGER", nullable: false)
@@ -114,15 +115,15 @@ namespace StudentService.Server.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentListensSubs", x => x.Id);
+                    table.PrimaryKey("PK_Exams", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_StudentListensSubs_Students_StudentId",
+                        name: "FK_Exams_Students_StudentId",
                         column: x => x.StudentId,
                         principalTable: "Students",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_StudentListensSubs_Subjects_SubjectId",
+                        name: "FK_Exams_Subjects_SubjectId",
                         column: x => x.SubjectId,
                         principalTable: "Subjects",
                         principalColumn: "Id",
@@ -156,6 +157,16 @@ namespace StudentService.Server.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Exams_StudentId",
+                table: "Exams",
+                column: "StudentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Exams_SubjectId",
+                table: "Exams",
+                column: "SubjectId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProfessorsSubjects_ProfessorId",
                 table: "ProfessorsSubjects",
                 column: "ProfessorId");
@@ -166,14 +177,15 @@ namespace StudentService.Server.Migrations
                 column: "StudyProgramExamsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentListensSubs_StudentId",
-                table: "StudentListensSubs",
-                column: "StudentId");
+                name: "IX_Students_IndexNumber",
+                table: "Students",
+                column: "IndexNumber",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_StudentListensSubs_SubjectId",
-                table: "StudentListensSubs",
-                column: "SubjectId");
+                name: "IX_Students_StudyProgramId",
+                table: "Students",
+                column: "StudyProgramId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_StudyProgramExams_StudyProgramId",
@@ -189,10 +201,13 @@ namespace StudentService.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Exams");
+
+            migrationBuilder.DropTable(
                 name: "ProfessorsSubjects");
 
             migrationBuilder.DropTable(
-                name: "StudentListensSubs");
+                name: "Students");
 
             migrationBuilder.DropTable(
                 name: "Professors");
@@ -201,13 +216,10 @@ namespace StudentService.Server.Migrations
                 name: "StudyProgramExams");
 
             migrationBuilder.DropTable(
-                name: "Students");
+                name: "StudyPrograms");
 
             migrationBuilder.DropTable(
                 name: "Subjects");
-
-            migrationBuilder.DropTable(
-                name: "StudyPrograms");
         }
     }
 }

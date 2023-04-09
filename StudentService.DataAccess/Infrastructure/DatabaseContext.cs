@@ -8,7 +8,7 @@ namespace DataAccess.Infrastructure
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<StudyProgram> StudyPrograms { get; set; }
-        public DbSet<Exam> StudentListensSubs { get; set; }
+        public DbSet<Exam> Exams { get; set; }
         public DbSet<StudyProgramExams> StudyProgramExams { get; set; }
         public DbSet<Professor> Professors { get; set; }
         public DbSet<ProfessorsSubjects> ProfessorsSubjects { get; set; }

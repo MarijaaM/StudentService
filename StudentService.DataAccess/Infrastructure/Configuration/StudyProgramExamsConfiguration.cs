@@ -14,7 +14,9 @@ namespace DataAccess.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<StudyProgramExams> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasOne(x => x.StudyProgram).WithMany(x => x.Exams).HasForeignKey(x => x.StudyProgramId).OnDelete(DeleteBehavior.Cascade);
+
         }
     }
 }

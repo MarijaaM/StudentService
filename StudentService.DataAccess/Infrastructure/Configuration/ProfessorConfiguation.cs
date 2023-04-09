@@ -9,6 +9,7 @@ namespace DataAccess.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Professor> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.FirstName);
             builder.Property(x => x.LastName);
             builder.Property(x => x.Email);

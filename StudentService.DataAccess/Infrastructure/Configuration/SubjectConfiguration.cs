@@ -14,8 +14,9 @@ namespace DataAccess.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Subject> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x=>x.Name).IsRequired();
-          
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.Property(x => x.Name).IsRequired();
+
         }
     }
 }

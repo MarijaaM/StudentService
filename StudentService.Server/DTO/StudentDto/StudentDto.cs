@@ -1,8 +1,8 @@
 ﻿using Model;
 
-namespace Server.DTO
+namespace StudentService.Server.DTO.StudentDto
 {
-    public class StudentDto : Person
+    public class StudentDto : PersonDto
     {
         public string IndexNumber { get; set; } = "";
         public List<Exam>? PreviousExams { get; set; }

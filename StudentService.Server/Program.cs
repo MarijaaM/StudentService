@@ -8,6 +8,8 @@ using Microsoft.OpenApi.Models;
 using Server.Interfaces;
 using Server.Mapping;
 using Server.Services;
+using StudentService.Server.Interfaces;
+using StudentService.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +54,8 @@ builder.Services.AddScoped<IProfessorRepository, ProfessorRepository>();
 builder.Services.AddScoped<IStudentsRepository, StudentRepository>();
 builder.Services.AddScoped<ISubjectsRepository, SubjectsRepository>();
 builder.Services.AddScoped<IStudentService, StudentsService>();
+builder.Services.AddScoped<ISubjectService, SubjectsService>();
+builder.Services.AddScoped<IProfessorService, ProfessorsService>();
 builder.Services.AddDbContext<DatabaseContext>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("StudentServiceDatabase"), b => b.MigrationsAssembly("StudentService.Server"));

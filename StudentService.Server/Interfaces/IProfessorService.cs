@@ -1,8 +1,8 @@
 ﻿using Model;
 
-namespace DataAccess.Repositories.ProfessorRepository
+namespace StudentService.Server.Interfaces
 {
-    public interface IProfessorRepository
+    public interface IProfessorService
     {
         Task<List<Professor>> GetAll();
         Task<Professor> GetById(long id);

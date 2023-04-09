@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Model;
-using Server.DTO;
 using Server.Interfaces;
+using StudentService.Server.DTO.StudentDto;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +30,7 @@ namespace Server.Controllers
 
         // GET api/<StudentController>/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> Get(long id)
         {
             Student student = await _studentService.GetById(id);
             if (student != null)
@@ -43,18 +43,18 @@ namespace Server.Controllers
 
         // POST api/<StudentController>
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] StudentDto studentDto)
+        public async Task<IActionResult> Add([FromBody] AddStudentDto addStudentDto)
         {
-            Student student = _mapper.Map<Student>(studentDto);
+            Student student = _mapper.Map<Student>(addStudentDto);
             await _studentService.Add(student);
             return Ok();
         }
 
         // PUT api/<StudentController>/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update([FromBody] StudentDto studentDto)
+        public async Task<IActionResult> Update([FromBody] AddStudentDto addStudentDto)
         {
-            Student student = _mapper.Map<Student>(studentDto);
+            Student student = _mapper.Map<Student>(addStudentDto);
             await _studentService.Update(student);
             return Ok();
         }

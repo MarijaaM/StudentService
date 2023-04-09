@@ -31,7 +31,7 @@ namespace DataAccess.Repositories.StudentsRepository
             return await _databaseContext.Students.Include(x => x.PreviousExams).ToListAsync();
         }
 
-        public async Task<Student> GetById(long id)
+        public async Task<Student?> GetById(long id)
         {
             return await _databaseContext.Students.Include(x => x.PreviousExams).FirstOrDefaultAsync(x => x.Id == id);
 

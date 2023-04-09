@@ -41,7 +41,7 @@ namespace StudentService.Server.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("StudentListensSubs");
+                    b.ToTable("Exams");
                 });
 
             modelBuilder.Entity("Model.Professor", b =>
@@ -91,6 +91,7 @@ namespace StudentService.Server.Migrations
             modelBuilder.Entity("Model.Student", b =>
                 {
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
@@ -119,6 +120,11 @@ namespace StudentService.Server.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("IndexNumber")
+                        .IsUnique();
+
+                    b.HasIndex("StudyProgramId");
 
                     b.ToTable("Students");
                 });
@@ -219,7 +225,7 @@ namespace StudentService.Server.Migrations
                 {
                     b.HasOne("Model.StudyProgram", "StudyProgram")
                         .WithMany("Students")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("StudyProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

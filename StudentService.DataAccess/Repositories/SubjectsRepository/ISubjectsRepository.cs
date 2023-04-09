@@ -10,9 +10,9 @@ namespace DataAccess.Repositories.SubjectsRepository
     public interface ISubjectsRepository
     {
         Task<List<Subject>> GetAll();
-        Task<Subject> GetById(long id);
-        Task<bool> Add(Subject subject);
+        Task<Subject?> GetById(long id);
+        Task Add(Subject subject);
         Task<bool> Update(Subject subject);
-        Task<bool> Delete(long id);
+        Task Delete(long id);
     }
 }
