@@ -365,3 +365,6 @@ FodyWeavers.xsd
 /StudentService.Server/Database/Database.sqlite
 /StudentService.Server/Database/Database.sqlite-shm
 /StudentService.Server/Database/Database.sqlite-wal
+/ClientApp/.vscode
+/ClientApp/.angular/cache/15.2.5/angular-webpack/bc4ae830fc22e26ad62724ebb9d98f682b84300a
+/ClientApp/.angular/cache/15.2.5/babel-webpack

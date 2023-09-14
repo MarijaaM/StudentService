@@ -1,0 +1,61 @@
+<p>register-student works!</p>
+<form [formGroup]="registerStudent" ngSubmit="onSubmit()">
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="firstname">Name </label>
+            <input type="text" id="firstname" class="form-control" formControlName="firstname">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="lastname">Last name </label>
+            <input type="text" id="lastname" class="form-control" formControlName="lastname">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="email">E-mail </label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="indexNumber">Index number </label>
+            <input type="text" id="indexNumber" class="form-control" formControlName="indexNumber">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="password">Password </label>
+            <input type="text" id="password" class="form-control" formControlName="password">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="methodOfFinancing">Method of financing </label>
+           <select name="methodOfFinancing" id="methodOfFinancing">
+            <option value="Budget">Budget</option>
+            <option value="SelfFinancing">Self financing</option>
+           </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="yearOfStudy">Year of study </label>
+            <input type="number" id="yearOfStudy" class="form-control" formControlName="yearOfStudy">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="studyProgram">Study program </label>
+            <div *ngFor="let studyProgram of studyPrograms">
+            <select name="studyProgram" id="studyProgram">
+                <option value={{studyProgram.id}}>
+                    {{studyProgram.name}}
+                </option>
+            </select>
+        </div>
+        </div>
+    </div>
+    
+</form>

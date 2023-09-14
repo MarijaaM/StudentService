@@ -1,0 +1,43 @@
+<p>registration works!</p>
+<div class="center">
+    <h2>Registration</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="firstname">First name</label>
+                <input type="text" id="firstname" class="form-control" formControlName="firstname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="lastname">Last name</label>
+                <input type="text" id="lastname" class="form-control" formControlName="lastname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" class="form-control" formControlName="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" class="form-control" formControlName="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+                <label for="password2">Repeat the password</label>
+                <input type="password" id="password2" class="form-control" formControlName="password2">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+             <div class="col-sm-6 form-group">
+                <button [disabled]="!registerForm.valid" class="btn btn-success " type="submit">Registration</button>
+            </div>
+        </div>
+    </form>
+ </div>
+       

@@ -1,0 +1,38 @@
+
+<form [formGroup]="createExamForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <label for="subject">Subject </label>
+        <div  class="col-sm-6 form-group" >
+           
+            <select  id="subject" class="form-control" formControlName="subject">
+                <option *ngFor="let item of subjects" value={{item.id}}>{{item.name}}</option>
+
+            </select>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="classRoom">Class room</label>
+            <input type="text" id="classRoom" class="form-control" formControlName="classRoom">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="date">Date </label>
+            <input type="datetime-local" id="date" class="form-control" formControlName="date">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label for="examinationPeriod">Examination period </label>
+            <input type="text" id="examinationPeriod" class="form-control" formControlName="examinationPeriod">
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-6 form-group">
+               <button [disabled]="!createExamForm.valid" class="btn btn-success " type="submit">Create</button>
+           </div>
+       </div>
+    
+</form>
