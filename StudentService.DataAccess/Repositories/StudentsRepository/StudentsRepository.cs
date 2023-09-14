@@ -21,19 +21,19 @@ namespace DataAccess.Repositories.StudentsRepository
 
         public async Task Delete(long id)
         {
-            Student student = await GetById(id);
+            Student? student = await GetById(id);
             _databaseContext.Remove(student.Id);
             await _databaseContext.SaveChangesAsync();
         }
 
         public async Task<List<Student>> GetAll()
         {
-            return await _databaseContext.Students.Include(x => x.PreviousExams).ToListAsync();
+            return await _databaseContext.Students.Include(x => x.Exams).ToListAsync();
         }
 
-        public async Task<Student?> GetById(long id)
+        public async Task<Student> GetById(long id)
         {
-            return await _databaseContext.Students.Include(x => x.PreviousExams).FirstOrDefaultAsync(x => x.Id == id);
+            return await _databaseContext.Students.Include(x => x.Exams).FirstOrDefaultAsync(x => x.Id == id);
 
         }
 

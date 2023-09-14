@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Model;
-using StudentService.Server.DTO.SubjectDto;
+using StudentService.Server.DTO.SubjectDtos;
 using StudentService.Server.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -32,9 +32,14 @@ namespace StudentService.Server.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(long id)
         {
+
             return Ok(_mapper.Map<SubjectDto>(await _subjectService.GetById(id)));
         }
-
+        [HttpGet("ProfessorsSubjects/{id}")]
+        public async Task<IActionResult> GetByProfessor(long id)
+        {
+            return Ok(_mapper.Map<List<SubjectDto>>(await _subjectService.GetByProfessor(id)));
+        }
         // POST api/<SubjectController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SubjectDto subjectDto)

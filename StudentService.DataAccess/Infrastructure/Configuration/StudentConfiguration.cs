@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Model;
+using System.Reflection.Emit;
 
 namespace DataAccess.Infrastructure.Configuration
 {
@@ -8,8 +9,6 @@ namespace DataAccess.Infrastructure.Configuration
     {
         public void Configure(EntityTypeBuilder<Student> builder)
         {
-            builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
 
             builder.HasIndex(x => x.IndexNumber).IsUnique();
             builder.Property(x => x.FirstName).IsRequired();

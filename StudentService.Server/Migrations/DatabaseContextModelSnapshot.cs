@@ -17,116 +17,34 @@ namespace StudentService.Server.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.15");
 
-            modelBuilder.Entity("Model.Exam", b =>
+            modelBuilder.Entity("Model.ExamResult", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("ExamId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Mark")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("PassedOrNot")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Results")
                         .HasColumnType("INTEGER");
 
                     b.Property<long>("StudentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("SubjectId")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("ExamId");
 
                     b.HasIndex("StudentId");
 
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("Exams");
-                });
-
-            modelBuilder.Entity("Model.Professor", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Professors");
-                });
-
-            modelBuilder.Entity("Model.ProfessorsSubjects", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("ProfessorId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<long>("StudyProgramExamsId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProfessorId");
-
-                    b.HasIndex("StudyProgramExamsId");
-
-                    b.ToTable("ProfessorsSubjects");
-                });
-
-            modelBuilder.Entity("Model.Student", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("IndexNumber")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<long>("StudyProgramId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("YearOfStudy")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("methodOfFinancing")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IndexNumber")
-                        .IsUnique();
-
-                    b.HasIndex("StudyProgramId");
-
-                    b.ToTable("Students");
+                    b.ToTable("ExamResults");
                 });
 
             modelBuilder.Entity("Model.StudyProgram", b =>
@@ -144,7 +62,7 @@ namespace StudentService.Server.Migrations
                     b.ToTable("StudyPrograms");
                 });
 
-            modelBuilder.Entity("Model.StudyProgramExams", b =>
+            modelBuilder.Entity("Model.StudyProgramSubjects", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -165,7 +83,7 @@ namespace StudentService.Server.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("StudyProgramExams");
+                    b.ToTable("StudyProgramSubjects");
                 });
 
             modelBuilder.Entity("Model.Subject", b =>
@@ -178,16 +96,132 @@ namespace StudentService.Server.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<long>("ProfessorId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("ProfessorId");
 
                     b.ToTable("Subjects");
                 });
 
-            modelBuilder.Entity("Model.Exam", b =>
+            modelBuilder.Entity("Model.User", b =>
                 {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserType")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
+
+                    b.HasDiscriminator<string>("UserType").HasValue("User");
+                });
+
+            modelBuilder.Entity("StudentService.Model.Exam", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClassRoom")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ExaminationPeriod")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("SubjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SubjectId");
+
+                    b.ToTable("Exams");
+                });
+
+            modelBuilder.Entity("Model.Professor", b =>
+                {
+                    b.HasBaseType("Model.User");
+
+                    b.HasDiscriminator().HasValue("Professor");
+                });
+
+            modelBuilder.Entity("Model.Student", b =>
+                {
+                    b.HasBaseType("Model.User");
+
+                    b.Property<string>("IndexNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("StudyProgramId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("YearOfStudy")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("methodOfFinancing")
+                        .HasColumnType("INTEGER");
+
+                    b.HasIndex("IndexNumber")
+                        .IsUnique();
+
+                    b.HasIndex("StudyProgramId");
+
+                    b.HasDiscriminator().HasValue("Student");
+                });
+
+            modelBuilder.Entity("Model.ExamResult", b =>
+                {
+                    b.HasOne("StudentService.Model.Exam", "Exam")
+                        .WithMany()
+                        .HasForeignKey("ExamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Model.Student", "Student")
-                        .WithMany("PreviousExams")
+                        .WithMany("Exams")
                         .HasForeignKey("StudentId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Exam");
+
+                    b.Navigation("Student");
+                });
+
+            modelBuilder.Entity("Model.StudyProgramSubjects", b =>
+                {
+                    b.HasOne("Model.StudyProgram", "StudyProgram")
+                        .WithMany()
+                        .HasForeignKey("StudyProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -197,28 +231,31 @@ namespace StudentService.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Student");
+                    b.Navigation("StudyProgram");
 
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("Model.ProfessorsSubjects", b =>
+            modelBuilder.Entity("Model.Subject", b =>
                 {
                     b.HasOne("Model.Professor", "Professor")
-                        .WithMany("ProfessorSubjects")
+                        .WithMany("Subjects")
                         .HasForeignKey("ProfessorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.StudyProgramExams", "StudyProgramExams")
-                        .WithMany()
-                        .HasForeignKey("StudyProgramExamsId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Professor");
+                });
 
-                    b.Navigation("StudyProgramExams");
+            modelBuilder.Entity("StudentService.Model.Exam", b =>
+                {
+                    b.HasOne("Model.Subject", "Subject")
+                        .WithMany("Exams")
+                        .HasForeignKey("SubjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Subject");
                 });
 
             modelBuilder.Entity("Model.Student", b =>
@@ -226,46 +263,29 @@ namespace StudentService.Server.Migrations
                     b.HasOne("Model.StudyProgram", "StudyProgram")
                         .WithMany("Students")
                         .HasForeignKey("StudyProgramId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("StudyProgram");
-                });
-
-            modelBuilder.Entity("Model.StudyProgramExams", b =>
-                {
-                    b.HasOne("Model.StudyProgram", "StudyProgram")
-                        .WithMany("Exams")
-                        .HasForeignKey("StudyProgramId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Model.Subject", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("StudyProgram");
-
-                    b.Navigation("Subject");
-                });
-
-            modelBuilder.Entity("Model.Professor", b =>
-                {
-                    b.Navigation("ProfessorSubjects");
-                });
-
-            modelBuilder.Entity("Model.Student", b =>
-                {
-                    b.Navigation("PreviousExams");
                 });
 
             modelBuilder.Entity("Model.StudyProgram", b =>
                 {
-                    b.Navigation("Exams");
-
                     b.Navigation("Students");
+                });
+
+            modelBuilder.Entity("Model.Subject", b =>
+                {
+                    b.Navigation("Exams");
+                });
+
+            modelBuilder.Entity("Model.Professor", b =>
+                {
+                    b.Navigation("Subjects");
+                });
+
+            modelBuilder.Entity("Model.Student", b =>
+                {
+                    b.Navigation("Exams");
                 });
 #pragma warning restore 612, 618
         }

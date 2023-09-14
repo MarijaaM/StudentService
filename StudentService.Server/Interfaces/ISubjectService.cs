@@ -9,5 +9,6 @@ namespace StudentService.Server.Interfaces
         Task Add(Subject subject);
         Task<bool> Update(Subject subject);
         Task Delete(long id);
+        Task<List<Subject>> GetByProfessor(long professorId);
     }
 }

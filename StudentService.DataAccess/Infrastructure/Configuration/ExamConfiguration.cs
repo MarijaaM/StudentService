@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Model;
+using StudentService.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace DataAccess.Infrastructure.Configuration
+namespace StudentService.DataAccess.Infrastructure.Configuration
 {
     public class ExamConfiguration : IEntityTypeConfiguration<Exam>
     {
         public void Configure(EntityTypeBuilder<Exam> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.Property(x => x.DateTime);
-            builder.Property(x => x.Mark);
-            builder.HasOne(x => x.Student)
-                   .WithMany(x => x.PreviousExams)
-                   .HasForeignKey(x => x.StudentId);
+            builder.HasOne(x => x.Subject).WithMany(x => x.Exams).HasForeignKey(x => x.SubjectId);
         }
     }
 }

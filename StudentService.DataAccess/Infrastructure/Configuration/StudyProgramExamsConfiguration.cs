@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Infrastructure.Configuration
 {
-    public class StudyProgramExamsConfiguration : IEntityTypeConfiguration<StudyProgramExams>
+    public class StudyProgramExamsConfiguration : IEntityTypeConfiguration<StudyProgramSubject>
     {
-        public void Configure(EntityTypeBuilder<StudyProgramExams> builder)
+        public void Configure(EntityTypeBuilder<StudyProgramSubject> builder)
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
-            builder.HasOne(x => x.StudyProgram).WithMany(x => x.Exams).HasForeignKey(x => x.StudyProgramId).OnDelete(DeleteBehavior.Cascade);
 
         }
     }

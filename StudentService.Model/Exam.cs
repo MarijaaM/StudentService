@@ -1,15 +1,19 @@
-﻿namespace Model
-{
+﻿using Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace StudentService.Model
+{
     public class Exam
     {
         public long Id { get; set; }
-        public int Mark { get; set; }
-        public DateTime DateTime { get; set; }
-        public Subject Subject { get; set; } = new Subject();
+        public string ClassRoom { get; set; }
+        public Subject Subject { get; set; }
         public long SubjectId { get; set; }
-        public long StudentId { get; set; }
-        public Student Student { get; set; } = new Student();
-
+        public DateTime Date { get; set; }
+        public string ExaminationPeriod { get; set; }
     }
 }

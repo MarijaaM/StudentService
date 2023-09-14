@@ -1,7 +1,7 @@
 ﻿namespace Model
 {
-    public class Professor : Person
+    public class Professor : User
     {
-        public List<ProfessorsSubjects> ProfessorSubjects { get; set; } = new();
+        public List<Subject> Subjects { get; set; } = new();
     }
 }

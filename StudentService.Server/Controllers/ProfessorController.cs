@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Model;
-using StudentService.Server.DTO.ProfessorDto;
+using StudentService.Server.DTO.ProfessorDtos;
 using StudentService.Server.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860

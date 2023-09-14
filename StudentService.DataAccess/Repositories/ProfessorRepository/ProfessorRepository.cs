@@ -25,12 +25,12 @@ namespace DataAccess.Repositories.ProfessorRepository
 
         public async Task<List<Professor>> GetAll()
         {
-            return await _databaseContext.Professors.Include(x => x.ProfessorSubjects).ToListAsync();
+            return await _databaseContext.Professors.Include(x => x.Subjects).ToListAsync();
         }
 
         public async Task<Professor> GetById(long id)
         {
-            return await _databaseContext.Professors.Include(x => x.ProfessorSubjects).FirstOrDefaultAsync(x => x.Id == id);
+            return await _databaseContext.Professors.Include(x => x.Subjects).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public Task<bool> Update(Professor professor)
