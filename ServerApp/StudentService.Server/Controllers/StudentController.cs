@@ -46,8 +46,16 @@ namespace Server.Controllers
         public async Task<IActionResult> Add([FromBody] RegisterStudentDto registerStudentDto)
         {
             Student student = _mapper.Map<Student>(registerStudentDto);
-            await _studentService.Add(student);
-            return Ok();
+            if (_studentService.Add(student) != null)
+            {
+                return Ok();
+
+            }
+            else
+            {
+                return Ok(false);
+            }
+
         }
 
         // PUT api/<StudentController>/5

@@ -22,7 +22,6 @@ export class RegisterStudentComponent {
       'indexNumber' : new FormControl('', Validators.required),
       'password' : new FormControl('', Validators.required),
       'methodOfFinancing' : new FormControl('', Validators.required),
-      'yearOfStudy' : new FormControl('', Validators.required),
       'studyProgram' : new FormControl('', Validators.required)
     })
     studyProgramService.GetAll().subscribe(
@@ -42,7 +41,6 @@ export class RegisterStudentComponent {
     student.indexNumber=this.registerStudent.value["indexNumber"];
     student.password=this.registerStudent.value["password"];
     student.methodOfFinancing=this.registerStudent.value["methodOfFinancing"];
-    student.yearOfStudy=this.registerStudent.value["yearOfStudy"];
     student.studyProgramId=this.registerStudent.value["studyProgram"];
 
     this.studentService.Registration(student).subscribe(

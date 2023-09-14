@@ -24,13 +24,12 @@ public class StudentsService : IStudentService
     {
         if (_databaseContext.Students.Where(x => x.Email == student.Email).ToList().Count == 0)
         {
-            student.StudyProgramId = null;
+
             student.Password = Encryption(student.Password);
             student.YearOfStudy = 1;
             return _studentRepository.Add(student);
         }
         return null;
-
 
     }
 
